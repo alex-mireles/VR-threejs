@@ -84,8 +84,8 @@ const tick = () => {
 
     controls.update()
     controls.enableDamping = true
-    renderer.render(scene,camera)
-    window.requestAnimationFrame(tick)
+    // renderer.render(scene,camera)
+    // window.requestAnimationFrame(tick)
 };
 
 tick()
