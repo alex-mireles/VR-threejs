@@ -18,24 +18,20 @@ scene.add( cube );
 
 camera.position.z = 5;
 
-function animate() {
-    requestAnimationFrame( animate );
-
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-
-    renderer.render( scene, camera );
-};
-
 animate();
 
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
 
-controller = renderer.xr.getController( 0 );
+function animate() {
 
-renderer.setAnimationLoop( function () {
+    renderer.setAnimationLoop( render );
+}
 
-	renderer.render( scene, camera );
+function render() {
+    const time = performance.now() * 0.0002;
+    cube.rotation.x = time * 2;
+    cube.rotation.y = time * 5;
 
-} );
+    renderer.render( scene, camera );
+}
