@@ -2,6 +2,8 @@ import {OrbitControls} from 'https://unpkg.com/three@0.127.0/examples/jsm/contro
 import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 const canvas = document.querySelector('canvas.webgl')
 
+import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
+
 // Scene
 const scene = new THREE.Scene()
 
@@ -59,6 +61,16 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width,sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
+
+document.body.appendChild( VRButton.createButton( renderer ) );
+renderer.xr.enabled = true;
+
+renderer.setAnimationLoop( function () {
+
+	renderer.render( scene, camera );
+
+} );
+
 
 const clock = new THREE.Clock()
 
