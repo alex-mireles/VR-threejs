@@ -12,18 +12,14 @@ const myTexture = textureLoader.load('coolTex.jpg')
 
 // Object
 const geometry = new THREE.BoxGeometry(3,3,3)
-const geometry2 = new THREE.DodecahedronGeometry(0.5,3)
 const material = new THREE.MeshBasicMaterial({
     map: myTexture
 })
 const boxMesh = new THREE.Mesh(geometry,material)
-const sphereMesh = new THREE.Mesh(geometry2,material)
 scene.add(boxMesh)
 // scene.add(sphereMesh)
 boxMesh.position.x = 0
 boxMesh.position.y = 0.8
-sphereMesh.position.x = -1.6
-sphereMesh.position.y = 0.5
 geometry.center()
 // Sizes
 const sizes = {
