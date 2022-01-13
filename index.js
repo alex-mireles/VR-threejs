@@ -11,7 +11,7 @@ const textureLoader = new THREE.TextureLoader()
 const myTexture = textureLoader.load('coolTex.jpg')
 
 // Object
-const geometry = new THREE.BoxGeometry(1,1,1)
+const geometry = new THREE.BoxGeometry(3,3,3)
 const geometry2 = new THREE.DodecahedronGeometry(0.5,3)
 const material = new THREE.MeshBasicMaterial({
     map: myTexture
@@ -32,17 +32,15 @@ const sizes = {
 }
 
 // Renderer gets updated each time window is resized
-window.addEventListener('resize',()=>{
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
+window.addEventListener('resize', onWindowResize);
 
-    camera.aspect = sizes.width/sizes.height
-    camera.updateProjectionMatrix()
+function onWindowResize() {
 
-    renderer.setSize(sizes.width,sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
-    
-})
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75,sizes.width/sizes.height,0.1,100)
@@ -64,6 +62,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
 
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
+
+controller = renderer.xr.getController( 0 );
 
 renderer.setAnimationLoop( function () {
 
