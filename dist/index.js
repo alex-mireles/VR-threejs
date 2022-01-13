@@ -70,22 +70,3 @@ renderer.setAnimationLoop( function () {
 	renderer.render( scene, camera );
 
 } );
-
-
-const clock = new THREE.Clock()
-
-const tick = () => {
-    const elapsedTime = clock.getElapsedTime()
-    boxMesh.rotateX(30*0.0003)
-    boxMesh.rotateY(30*0.0003)
-    sphereMesh.rotateY(30*0.0003)
-    // mesh.position.y = Math.sin(elapsedTime) *0.1
-    boxMesh.position.z = Math.sin(elapsedTime) * 1
-
-    controls.update()
-    controls.enableDamping = true
-    // renderer.render(scene,camera)
-    // window.requestAnimationFrame(tick)
-};
-
-tick()
