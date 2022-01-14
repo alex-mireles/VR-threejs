@@ -12,16 +12,27 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 const geometry = new THREE.BoxGeometry(3, 3, 3);
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const material = new THREE.MeshStandardMaterial( { color: 0x00ffaa } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
+cube.position.set(0,5,0);
 
-const axesHelper = new THREE.AxesHelper( 5 );
+const cube2 = new THREE.Mesh( geometry, material );
+scene.add( cube2 );
+cube2.position.set(10,0,0);
+
+const cube3 = new THREE.Mesh( geometry, material );
+scene.add( cube3 );
+cube3.position.set(-10,0,0);
+
+const axesHelper = new THREE.AxesHelper( 1 );
 scene.add( axesHelper );
 
-cube.position.set(5,5,0);
+const light = new THREE.PointLight( 0xffffff, 1, 0 );
+light.position.set( 0, 0, 20 );
+scene.add( light );
 
-camera.position.z = 5;
+camera.position.z = 10;
 
 animate();
 
@@ -37,6 +48,12 @@ function render() {
     const time = performance.now() * 0.0002;
     cube.rotation.x = time * 2;
     cube.rotation.y = time * 3;
+
+    cube2.rotation.x = time * 2;
+    cube2.rotation.y = time * 3;
+
+    cube3.rotation.x = time * 2;
+    cube3.rotation.y = time * 3;
 
     renderer.render( scene, camera );
 }
