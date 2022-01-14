@@ -11,7 +11,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-const geometry = new THREE.BoxGeometry();
+const geometry = new THREE.BoxGeometry(3, 3, 3);
 const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
@@ -31,7 +31,7 @@ function animate() {
 function render() {
     const time = performance.now() * 0.0002;
     cube.rotation.x = time * 2;
-    cube.rotation.y = time * 5;
+    cube.rotation.y = time * 3;
 
     renderer.render( scene, camera );
 }
