@@ -17,18 +17,21 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 const geometry = new THREE.BoxGeometry(3, 3, 3);
-const material = new THREE.MeshStandardMaterial( { color: 0x00ffaa } );
+const material = new THREE.MeshStandardMaterial( { color: 0xff0000 } );
+const material2 = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
+const material3 = new THREE.MeshStandardMaterial( { color: 0x0000ff } );
+
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
-cube.position.set(0,5,0);
+cube.position.set(-10,0,0);
 
-const cube2 = new THREE.Mesh( geometry, material );
+const cube2 = new THREE.Mesh( geometry, material2 );
 scene.add( cube2 );
-cube2.position.set(10,0,0);
+cube2.position.set(0,5,0);
 
-const cube3 = new THREE.Mesh( geometry, material );
+const cube3 = new THREE.Mesh( geometry, material3 );
 scene.add( cube3 );
-cube3.position.set(-10,0,0);
+cube3.position.set(10,0,0);
 
 const axesHelper = new THREE.AxesHelper( 1 );
 scene.add( axesHelper );
