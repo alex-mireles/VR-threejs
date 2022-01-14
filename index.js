@@ -6,6 +6,11 @@ import { VRButton } from 'https://unpkg.com/three@0.127.0/examples/jsm/webxr/VRB
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+camera.position.set(0, 0, 10);
+
+const cameraGroup = new THREE.Group();
+cameraGroup.position.set(0, 0, 10);
+
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -32,12 +37,20 @@ const light = new THREE.PointLight( 0xffffff, 1, 0 );
 light.position.set( 0, 0, 20 );
 scene.add( light );
 
-camera.position.z = 10;
-
 animate();
 
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
+
+renderer.xr.addEventListener('sessionstart', function () {
+    scene.add(cameraGroup);
+    cameraGroup.add(camera);
+});
+
+renderer.xr.addEventListener('sessionend', function () {
+    scene.remove(cameraGroup);
+    cameraGroup.remove(camera);
+});
 
 function animate() {
 
